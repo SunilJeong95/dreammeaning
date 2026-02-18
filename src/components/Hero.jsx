@@ -1,7 +1,39 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { analyzeDream, generateDreamImage } from '../services/gemini';
 
 export default function Hero() {
   const [dream, setDream] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  async function handleAnalyze() {
+    if (!dream.trim()) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const [analysisResult, imageResult] = await Promise.allSettled([
+        analyzeDream(dream),
+        generateDreamImage(dream),
+      ]);
+
+      if (analysisResult.status === 'rejected') {
+        throw analysisResult.reason;
+      }
+
+      navigate('/result', {
+        state: {
+          result: analysisResult.value,
+          imageUrl: imageResult.status === 'fulfilled' ? imageResult.value : null,
+        },
+      });
+    } catch (e) {
+      setError(`Error: ${e.message}`);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <section className="max-w-4xl mx-auto px-4 text-center mb-24 relative">
@@ -42,9 +74,22 @@ export default function Hero() {
               />
             </div>
             <div className="p-2 flex items-center justify-end">
-              <button className="w-full md:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-[#34e3fb] text-background-dark font-bold py-3 px-6 rounded-2xl shadow-[0_0_20px_rgba(30,216,241,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98]">
-                <span>Analyze &amp; Draw</span>
-                <span className="material-symbols-outlined text-[20px]">draw</span>
+              <button
+                onClick={handleAnalyze}
+                disabled={loading || !dream.trim()}
+                className="w-full md:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-[#34e3fb] disabled:opacity-50 disabled:cursor-not-allowed text-background-dark font-bold py-3 px-6 rounded-2xl shadow-[0_0_20px_rgba(30,216,241,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                {loading ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-background-dark/30 border-t-background-dark rounded-full animate-spin"></span>
+                    <span>Analyzing...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Analyze &amp; Draw</span>
+                    <span className="material-symbols-outlined text-[20px]">draw</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -54,6 +99,13 @@ export default function Hero() {
           100% Private &amp; Encrypted end-to-end.
         </div>
       </div>
+
+      {/* Error */}
+      {error && (
+        <div className="mt-6 max-w-2xl mx-auto px-4 py-3 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+          {error}
+        </div>
+      )}
     </section>
   );
 }

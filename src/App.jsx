@@ -1,30 +1,12 @@
-import Header from './components/Header';
-import Hero from './components/Hero';
-import LiveFeed from './components/LiveFeed';
-import Features from './components/Features';
-import Pricing from './components/Pricing';
-import Footer from './components/Footer';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import ResultPage from './pages/ResultPage';
 
 export default function App() {
   return (
-    <div className="bg-background-dark text-white min-h-screen relative selection:bg-primary selection:text-background-dark">
-      {/* Ambient Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="floating-orb w-[600px] h-[600px] bg-primary/20 top-[-200px] left-1/2 transform -translate-x-1/2"></div>
-        <div className="floating-orb w-[500px] h-[500px] bg-accent-purple/20 bottom-0 right-[-100px]"></div>
-        <div className="floating-orb w-[400px] h-[400px] bg-blue-600/20 bottom-[20%] left-[-100px]"></div>
-      </div>
-
-      <Header />
-
-      <main className="relative z-10 pt-32 pb-20">
-        <Hero />
-        <LiveFeed />
-        <Features />
-        <Pricing />
-      </main>
-
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/result" element={<ResultPage />} />
+    </Routes>
   );
 }
