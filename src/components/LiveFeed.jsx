@@ -101,13 +101,12 @@ export default function LiveFeed() {
       <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
         <div>
           <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-            Dreams Happening Now
-            <span className="flex h-3 w-3 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            Dream Gallery
+            <span className="text-xs font-normal text-gray-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full tracking-wide">
+              Sample Content
             </span>
           </h2>
-          <p className="text-gray-400">Explore the collective unconscious from around the globe.</p>
+          <p className="text-gray-400">Illustrative examples of dream analyses. Not real user data.</p>
         </div>
         <div className="flex gap-2">
           <button className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-sm text-gray-300 transition-colors border border-white/5">

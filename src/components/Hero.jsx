@@ -40,7 +40,7 @@ export default function Hero() {
       {/* Badge */}
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-8 uppercase">
         <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-        AI Dream Interpreter v2.0 Live
+        AI Entertainment · Dream Analysis
       </div>
 
       {/* Headline */}
@@ -49,12 +49,12 @@ export default function Hero() {
           Decode Your Dreams.
         </span>
         <br />
-        <span className="text-white drop-shadow-md">See Your Subconscious.</span>
+        <span className="text-white drop-shadow-md">Explore Your Dreams.</span>
       </h1>
 
       <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-        Advanced AI interpretation and artistic rendering in a Mystical Tech aesthetic.
-        Unveil the hidden meanings behind your nightly visions.
+        AI-powered dream analysis and image generation for entertainment and creative self-reflection.
+        Describe your dream and receive an imaginative, AI-generated interpretation — just for fun.
       </p>
 
       {/* Input */}
@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
         <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-500">
           <span className="material-symbols-outlined text-[14px]">lock</span>
-          100% Private &amp; Encrypted end-to-end.
+          Your entries are private and never shared.
         </div>
       </div>
 

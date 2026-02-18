@@ -3,27 +3,27 @@ const features = [
     icon: 'psychology',
     iconColor: 'text-primary',
     bgColor: 'bg-primary/10 group-hover:bg-primary/20',
-    title: 'Freud-Level Analysis',
+    title: 'AI Symbol Analysis',
     description:
-      'Our AI is trained on thousands of psychoanalytic texts to provide deep, meaningful insights into your subconscious symbols and narratives.',
+      'Our AI draws on a wide range of psychological and symbolic frameworks to offer creative, thought-provoking reflections on your dream narratives — for entertainment and self-exploration.',
     highlight: false,
   },
   {
     icon: 'hd',
     iconColor: 'text-accent-purple',
     bgColor: 'bg-accent-purple/10 group-hover:bg-accent-purple/20',
-    title: '4K Visualization',
+    title: 'AI Dream Visualization',
     description:
-      "Don't just describe it. See it. Generate high-fidelity, print-ready 4K artwork of your dreams using our proprietary Mystical Rendering Engine.",
+      "Don't just describe it. See it. Generate vivid AI artwork inspired by your dreams using our generative image engine.",
     highlight: true,
   },
   {
     icon: 'lock_open',
     iconColor: 'text-blue-400',
     bgColor: 'bg-blue-500/10 group-hover:bg-blue-500/20',
-    title: 'Secure Dream Journal',
+    title: 'Private Dream Journal',
     description:
-      'Your subconscious is private property. We use military-grade encryption to ensure your personal dream journal remains yours and yours alone.',
+      'Your dream entries are stored privately. We do not share or sell your personal content to third parties.',
     highlight: false,
   },
 ];
@@ -34,9 +34,9 @@ export default function Features() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
 
       <div className="text-center mb-16 relative z-10">
-        <h2 className="text-4xl font-bold text-white mb-4">Deep Dive into your Psyche</h2>
+        <h2 className="text-4xl font-bold text-white mb-4">What DreamLens Offers</h2>
         <p className="text-gray-400 max-w-2xl mx-auto">
-          Unlock the secrets of your mind with our advanced suite of mystical technology.
+          An AI-powered entertainment experience for exploring the imagery and themes of your dreams.
         </p>
       </div>
 

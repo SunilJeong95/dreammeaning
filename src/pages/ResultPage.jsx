@@ -232,13 +232,18 @@ export default function ResultPage() {
                       onClick={() => setUnlocked(true)}
                       className="w-[90%] bg-[#1ed8f1] hover:bg-[#158ca1] text-[#020617] font-bold py-3.5 px-6 rounded-full shadow-neon transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
                     >
-                      <span>Unlock Full Report</span>
+                      <span>See Full AI Analysis</span>
                       <span className="bg-black/10 px-2 py-0.5 rounded text-xs">$0.99</span>
                     </button>
-                    <p className="text-[10px] text-slate-500 mt-3 uppercase tracking-wider font-medium">Restoring ancient wisdom</p>
+                    <p className="text-[10px] text-slate-500 mt-3 tracking-wider font-medium">AI-generated · For entertainment only</p>
                   </div>
                 )}
               </section>
+
+              {/* Disclaimer */}
+              <p className="text-[11px] text-slate-600 text-center leading-relaxed px-2">
+                This analysis is AI-generated for entertainment and creative self-reflection only. It does not constitute professional psychological or medical advice.
+              </p>
 
               {/* Daily Advice */}
               <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl p-5 border border-slate-700 flex items-start gap-4 shadow-lg">
@@ -253,6 +258,7 @@ export default function ResultPage() {
             /* Fortune Tab */
             <section className="space-y-4">
               <h3 className="text-lg font-bold text-slate-200 px-1">Lucky Signifiers</h3>
+              <p className="text-[11px] text-slate-600 px-1">For entertainment purposes only. Not a prediction or guarantee.</p>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-surface-dark border border-slate-800 p-4 rounded-2xl flex flex-col justify-between h-28 relative overflow-hidden group">
                   <div className="absolute -right-4 -top-4 w-16 h-16 bg-[#1ed8f1]/10 rounded-full blur-xl group-hover:bg-[#1ed8f1]/20 transition-all" />

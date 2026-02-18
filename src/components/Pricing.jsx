@@ -2,7 +2,8 @@ export default function Pricing() {
   return (
     <section className="max-w-5xl mx-auto px-6 mb-24">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-white">Choose Your Reality</h2>
+        <h2 className="text-3xl font-bold text-white mb-3">Choose Your Plan</h2>
+        <p className="text-gray-500 text-sm">All plans provide AI-generated entertainment content only.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -42,8 +43,8 @@ export default function Pricing() {
           <ul className="space-y-4 mb-8">
             {[
               'Unlimited Dreams',
-              '4K Resolution Export',
-              'Deep Freud & Jung Analysis',
+              'HD Image Export',
+              'Extended AI Symbol Analysis',
               'Priority Generation',
             ].map((item) => (
               <li key={item} className="flex items-center gap-3 text-sm text-white font-medium">
