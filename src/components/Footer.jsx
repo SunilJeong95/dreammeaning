@@ -14,13 +14,6 @@ export default function Footer() {
           <span className="text-gray-500 font-semibold">DreamLens</span>
         </div>
         <div className="text-gray-600 text-sm">{t.footerCopy}</div>
-        <div className="flex gap-6">
-          {['Privacy', 'Terms'].map((link) => (
-            <a key={link} className="text-gray-500 hover:text-white transition-colors" href="#">
-              {link}
-            </a>
-          ))}
-        </div>
       </div>
     </footer>
   );

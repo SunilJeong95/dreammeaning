@@ -9,9 +9,6 @@ const dreams = [
     tag: "Lucid Dream",
     tagColor: "text-primary",
     excerpt: '"I discovered islands floating in a void of stars, connected by bridges of pure light..."',
-    flag: "🇯🇵",
-    location: "Tokyo",
-    views: "1.2k",
   },
   {
     id: 2,
@@ -21,9 +18,6 @@ const dreams = [
     tag: "Nightmare",
     tagColor: "text-accent-purple",
     excerpt: '"Running through a city that was melting into digital rain. The code was speaking to me."',
-    flag: "🇺🇸",
-    location: "NYC",
-    views: "854",
   },
   {
     id: 3,
@@ -33,9 +27,6 @@ const dreams = [
     tag: "Recurring",
     tagColor: "text-primary",
     excerpt: '"Having tea with bioluminescent jellyfish in a submerged Victorian parlor."',
-    flag: "🇬🇧",
-    location: "London",
-    views: "2.4k",
   },
   {
     id: 4,
@@ -45,9 +36,6 @@ const dreams = [
     tag: "Prophetic",
     tagColor: "text-accent-purple",
     excerpt: '"Walking through a desert where every grain of sand was a tiny mirror reflecting my past."',
-    flag: "🇪🇬",
-    location: "Cairo",
-    views: "567",
   },
   {
     id: 5,
@@ -57,9 +45,6 @@ const dreams = [
     tag: "Abstract",
     tagColor: "text-primary",
     excerpt: '"I could see music as physical ribbons of color wrapping around the trees."',
-    flag: "🇧🇷",
-    location: "Rio",
-    views: "3.1k",
   },
 ];
 
@@ -79,19 +64,7 @@ function DreamCard({ dream }) {
         </div>
       </div>
       <div className="p-5 pt-2">
-        <p className="text-gray-400 text-sm mb-4 line-clamp-2">{dream.excerpt}</p>
-        <div className="flex items-center justify-between border-t border-white/10 pt-3">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gray-700 overflow-hidden flex items-center justify-center text-xs">
-              {dream.flag}
-            </div>
-            <span className="text-xs text-gray-500">{dream.location}</span>
-          </div>
-          <div className="flex items-center gap-1 text-gray-500 text-xs">
-            <span className="material-symbols-outlined text-[14px]">visibility</span>
-            {dream.views}
-          </div>
-        </div>
+        <p className="text-gray-400 text-sm">{dream.excerpt}</p>
       </div>
     </div>
   );
@@ -102,24 +75,14 @@ export default function LiveFeed() {
 
   return (
     <section className="max-w-7xl mx-auto px-6 mb-32">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-        <div>
-          <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-            {t.galleryTitle}
-            <span className="text-xs font-normal text-gray-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full tracking-wide">
-              {t.gallerySample}
-            </span>
-          </h2>
-          <p className="text-gray-400">{t.galleryDesc}</p>
-        </div>
-        <div className="flex gap-2">
-          <button className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-sm text-gray-300 transition-colors border border-white/5">
-            {t.trending}
-          </button>
-          <button className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-sm text-gray-300 transition-colors border border-white/5">
-            {t.newest}
-          </button>
-        </div>
+      <div className="mb-10">
+        <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
+          {t.galleryTitle}
+          <span className="text-xs font-normal text-gray-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full tracking-wide">
+            {t.gallerySample}
+          </span>
+        </h2>
+        <p className="text-gray-400">{t.galleryDesc}</p>
       </div>
 
       <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">

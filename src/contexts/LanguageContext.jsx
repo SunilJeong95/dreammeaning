@@ -42,8 +42,6 @@ const translations = {
     galleryTitle: 'Dream Gallery',
     gallerySample: 'Sample Content',
     galleryDesc: 'Illustrative examples of dream analyses. Not real user data.',
-    trending: 'Trending',
-    newest: 'Newest',
 
     // Footer
     footerDisclaimer:
@@ -111,8 +109,6 @@ const translations = {
     galleryTitle: '꿈 갤러리',
     gallerySample: '샘플 콘텐츠',
     galleryDesc: '꿈 분석의 예시 콘텐츠입니다. 실제 사용자 데이터가 아닙니다.',
-    trending: '인기',
-    newest: '최신',
 
     // Footer
     footerDisclaimer:
