@@ -60,7 +60,6 @@ export default function ResultPage() {
   const { state } = useLocation();
   const navigate  = useNavigate();
   const [tab, setTab] = useState('psychology');
-  const [unlocked, setUnlocked] = useState(false);
 
   // 결과 데이터 없으면 홈으로
   if (!state?.result) return <Navigate to="/" replace />;
@@ -95,14 +94,7 @@ export default function ResultPage() {
             <span className="material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="text-sm font-bold uppercase tracking-widest text-slate-300">Dream Analysis</h1>
-          <div className="flex gap-1">
-            <button className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-colors text-slate-300">
-              <span className="material-symbols-outlined text-[20px]">ios_share</span>
-            </button>
-            <button className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-colors text-[#1ed8f1]">
-              <span className="material-symbols-outlined text-[20px]">bookmark</span>
-            </button>
-          </div>
+          <div className="w-10" />
         </header>
 
         {/* Content */}
@@ -212,32 +204,15 @@ export default function ResultPage() {
               </section>
 
               {/* Deep Analysis */}
-              <section className="relative rounded-2xl overflow-hidden border border-slate-800 bg-surface-dark p-6">
+              <section className="rounded-2xl border border-slate-800 bg-surface-dark p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="material-symbols-outlined text-[#f59e0b]">psychology</span>
                   <h3 className="text-lg font-bold text-white">Deep Analysis</h3>
                 </div>
                 <div className="space-y-4">
                   <p className="text-sm text-slate-300 leading-relaxed">{result.interpretation}</p>
-                  <p className={`text-sm text-slate-300 leading-relaxed transition-all duration-300 ${unlocked ? '' : 'blur-[4px] select-none'}`}>
-                    {result.deepAnalysis}
-                  </p>
+                  <p className="text-sm text-slate-300 leading-relaxed">{result.deepAnalysis}</p>
                 </div>
-                {!unlocked && (
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/80 to-[#020617] flex flex-col items-center justify-end pb-6 pt-20">
-                    <div className="p-3 bg-slate-800 rounded-full border border-slate-700 shadow-xl mb-4">
-                      <span className="material-symbols-outlined text-[#1ed8f1]">lock</span>
-                    </div>
-                    <button
-                      onClick={() => setUnlocked(true)}
-                      className="w-[90%] bg-[#1ed8f1] hover:bg-[#158ca1] text-[#020617] font-bold py-3.5 px-6 rounded-full shadow-neon transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
-                    >
-                      <span>See Full AI Analysis</span>
-                      <span className="bg-black/10 px-2 py-0.5 rounded text-xs">$0.99</span>
-                    </button>
-                    <p className="text-[10px] text-slate-500 mt-3 tracking-wider font-medium">AI-generated · For entertainment only</p>
-                  </div>
-                )}
               </section>
 
               {/* Disclaimer */}
