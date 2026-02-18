@@ -1,6 +1,6 @@
 // ─── DUMMY MODE (테스트용) ───────────────────────────────────────────────────
 // 운영 전환 시 아래 DUMMY_MODE를 false로 변경하세요.
-const DUMMY_MODE = true;
+const DUMMY_MODE = false;
 
 const DUMMY_POOL = [
   {
