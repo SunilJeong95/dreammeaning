@@ -57,7 +57,11 @@ function getDummy() {
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const genAI   = new GoogleGenerativeAI(API_KEY);
+
+function getGenAI() {
+  if (!API_KEY) throw new Error('VITE_GEMINI_API_KEY is not configured. Set this environment variable in Cloudflare Pages and redeploy.');
+  return new GoogleGenerativeAI(API_KEY);
+}
 
 export async function analyzeDream(dreamText) {
   if (DUMMY_MODE) {
@@ -65,7 +69,7 @@ export async function analyzeDream(dreamText) {
     return getDummy();
   }
 
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
+  const model = getGenAI().getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
 
   const prompt = `You are a mystical dream interpreter with deep knowledge of psychology, symbolism, and the subconscious mind.
 
