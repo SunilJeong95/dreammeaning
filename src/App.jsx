@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from './components/Header';
+import Hero from './components/Hero';
+import LiveFeed from './components/LiveFeed';
+import Features from './components/Features';
+import Pricing from './components/Pricing';
+import Footer from './components/Footer';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-background-dark text-white min-h-screen relative selection:bg-primary selection:text-background-dark">
+      {/* Ambient Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="floating-orb w-[600px] h-[600px] bg-primary/20 top-[-200px] left-1/2 transform -translate-x-1/2"></div>
+        <div className="floating-orb w-[500px] h-[500px] bg-accent-purple/20 bottom-0 right-[-100px]"></div>
+        <div className="floating-orb w-[400px] h-[400px] bg-blue-600/20 bottom-[20%] left-[-100px]"></div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+      <Header />
+
+      <main className="relative z-10 pt-32 pb-20">
+        <Hero />
+        <LiveFeed />
+        <Features />
+        <Pricing />
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
