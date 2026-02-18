@@ -13,13 +13,6 @@ export default function Header() {
           </h1>
         </div>
 
-        {/* Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {['Home', 'Gallery', 'Features', 'Pricing'].map((item) => (
-            <a key={item} className="nav-link" href="#">{item}</a>
-          ))}
-        </nav>
-
         {/* Actions */}
         <div className="flex items-center gap-4">
           <button className="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5">
