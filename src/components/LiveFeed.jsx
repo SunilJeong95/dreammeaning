@@ -1,3 +1,5 @@
+import { useLang } from '../contexts/LanguageContext';
+
 const dreams = [
   {
     id: 1,
@@ -8,7 +10,7 @@ const dreams = [
     tagColor: "text-primary",
     excerpt: '"I discovered islands floating in a void of stars, connected by bridges of pure light..."',
     flag: "🇯🇵",
-    location: "Tokyo, 2m ago",
+    location: "Tokyo",
     views: "1.2k",
   },
   {
@@ -20,7 +22,7 @@ const dreams = [
     tagColor: "text-accent-purple",
     excerpt: '"Running through a city that was melting into digital rain. The code was speaking to me."',
     flag: "🇺🇸",
-    location: "NYC, 5m ago",
+    location: "NYC",
     views: "854",
   },
   {
@@ -32,7 +34,7 @@ const dreams = [
     tagColor: "text-primary",
     excerpt: '"Having tea with bioluminescent jellyfish in a submerged Victorian parlor."',
     flag: "🇬🇧",
-    location: "London, 12m ago",
+    location: "London",
     views: "2.4k",
   },
   {
@@ -44,7 +46,7 @@ const dreams = [
     tagColor: "text-accent-purple",
     excerpt: '"Walking through a desert where every grain of sand was a tiny mirror reflecting my past."',
     flag: "🇪🇬",
-    location: "Cairo, 15m ago",
+    location: "Cairo",
     views: "567",
   },
   {
@@ -56,7 +58,7 @@ const dreams = [
     tagColor: "text-primary",
     excerpt: '"I could see music as physical ribbons of color wrapping around the trees."',
     flag: "🇧🇷",
-    location: "Rio, 22m ago",
+    location: "Rio",
     views: "3.1k",
   },
 ];
@@ -96,24 +98,26 @@ function DreamCard({ dream }) {
 }
 
 export default function LiveFeed() {
+  const { t } = useLang();
+
   return (
     <section className="max-w-7xl mx-auto px-6 mb-32">
       <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
         <div>
           <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-            Dream Gallery
+            {t.galleryTitle}
             <span className="text-xs font-normal text-gray-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full tracking-wide">
-              Sample Content
+              {t.gallerySample}
             </span>
           </h2>
-          <p className="text-gray-400">Illustrative examples of dream analyses. Not real user data.</p>
+          <p className="text-gray-400">{t.galleryDesc}</p>
         </div>
         <div className="flex gap-2">
           <button className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-sm text-gray-300 transition-colors border border-white/5">
-            Trending
+            {t.trending}
           </button>
           <button className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-sm text-gray-300 transition-colors border border-white/5">
-            Newest
+            {t.newest}
           </button>
         </div>
       </div>

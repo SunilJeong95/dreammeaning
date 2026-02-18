@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { analyzeDream, generateDreamImage } from '../services/gemini';
+import { useLang } from '../contexts/LanguageContext';
 
 export default function Hero() {
   const [dream, setDream] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { t } = useLang();
 
   async function handleAnalyze() {
     if (!dream.trim()) return;
@@ -40,21 +42,20 @@ export default function Hero() {
       {/* Badge */}
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-8 uppercase">
         <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-        AI Entertainment · Dream Analysis
+        {t.badge}
       </div>
 
       {/* Headline */}
       <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[1.1]">
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-primary to-accent-purple drop-shadow-[0_0_15px_rgba(30,216,241,0.3)]">
-          Decode Your Dreams.
+          {t.heroLine1}
         </span>
         <br />
-        <span className="text-white drop-shadow-md">Explore Your Dreams.</span>
+        <span className="text-white drop-shadow-md">{t.heroLine2}</span>
       </h1>
 
       <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-        AI-powered dream analysis and image generation for entertainment and creative self-reflection.
-        Describe your dream and receive an imaginative, AI-generated interpretation — just for fun.
+        {t.heroDesc}
       </p>
 
       {/* Input */}
@@ -70,7 +71,7 @@ export default function Hero() {
                 value={dream}
                 onChange={(e) => setDream(e.target.value)}
                 className="w-full h-32 md:h-16 bg-transparent border-0 text-white placeholder-gray-500 focus:ring-0 pl-12 pr-4 py-4 text-base resize-none outline-none"
-                placeholder="Last night, I was flying over a city made of crystal..."
+                placeholder={t.placeholder}
               />
             </div>
             <div className="p-2 flex items-center justify-end">
@@ -82,11 +83,11 @@ export default function Hero() {
                 {loading ? (
                   <>
                     <span className="w-4 h-4 border-2 border-background-dark/30 border-t-background-dark rounded-full animate-spin"></span>
-                    <span>Analyzing...</span>
+                    <span>{t.analyzing}</span>
                   </>
                 ) : (
                   <>
-                    <span>Analyze &amp; Draw</span>
+                    <span>{t.analyzeBtn}</span>
                     <span className="material-symbols-outlined text-[20px]">draw</span>
                   </>
                 )}
@@ -96,7 +97,7 @@ export default function Hero() {
         </div>
         <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-500">
           <span className="material-symbols-outlined text-[14px]">lock</span>
-          Your entries are private and never shared.
+          {t.privacy}
         </div>
       </div>
 
