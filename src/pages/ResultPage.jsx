@@ -378,19 +378,44 @@ export default function ResultPage() {
               </p>
 
               {/* Daily Advice */}
-              <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl p-5 border border-slate-700 flex items-start gap-4 shadow-lg">
-                <span className="material-symbols-outlined text-[#1ed8f1] mt-1 shrink-0">auto_awesome</span>
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-xs font-bold uppercase text-[#1ed8f1] mb-1 tracking-widest">{t.adviceTitle}</h4>
-                  {unlocked ? (
-                    <p className="text-sm text-slate-200 font-medium font-body">{result.advice}</p>
-                  ) : (
-                    <div className="relative overflow-hidden" style={{ maxHeight: '1.4rem' }}>
-                      <p className="text-sm text-slate-200 font-medium font-body">{result.advice}</p>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-900/60 to-slate-800" />
-                    </div>
-                  )}
+              <div className="rounded-2xl border border-slate-800 bg-surface-dark p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="material-symbols-outlined text-[#1ed8f1]">auto_awesome</span>
+                  <h3 className="text-lg font-bold text-white">{t.adviceTitle}</h3>
                 </div>
+
+                {unlocked ? (
+                  <p className="text-sm text-slate-300 leading-relaxed">{result.advice}</p>
+                ) : (
+                  <div>
+                    {/* Teaser */}
+                    <div className="relative overflow-hidden" style={{ maxHeight: '4.5rem' }}>
+                      <p className="text-sm text-slate-300 leading-relaxed">{result.advice}</p>
+                      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-surface-dark to-transparent" />
+                    </div>
+
+                    {/* Blurred remainder */}
+                    <div
+                      className="mt-2 select-none pointer-events-none"
+                      style={{ filter: 'blur(4px)' }}
+                    >
+                      <p className="text-sm text-slate-300 leading-relaxed line-clamp-2">{result.advice}</p>
+                    </div>
+
+                    {/* Unlock CTA */}
+                    <div className="mt-5 flex flex-col items-center gap-2 pt-4 border-t border-slate-800/60">
+                      <span className="material-symbols-outlined text-[#f59e0b] text-3xl">lock</span>
+                      <p className="text-xs text-slate-400 text-center max-w-[220px] leading-relaxed">{t.unlockDesc}</p>
+                      <button
+                        onClick={() => createCheckout(PRODUCT_IDS.single)}
+                        disabled={isVerifying}
+                        className="mt-1 px-6 py-2.5 rounded-full bg-[#1ed8f1] text-[#020617] font-black text-sm hover:bg-[#34e3fb] transition-all shadow-lg shadow-[#1ed8f1]/20 disabled:opacity-50"
+                      >
+                        {isVerifying ? t.verifying : t.unlockBtn}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </>
           ) : (
