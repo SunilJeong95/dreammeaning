@@ -389,7 +389,7 @@ export default function ResultPage() {
                 ) : (
                   <div>
                     {/* Teaser */}
-                    <div className="relative overflow-hidden" style={{ maxHeight: '4.5rem' }}>
+                    <div className="relative overflow-hidden" style={{ maxHeight: '1.5rem' }}>
                       <p className="text-sm text-slate-300 leading-relaxed">{result.advice}</p>
                       <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-surface-dark to-transparent" />
                     </div>
