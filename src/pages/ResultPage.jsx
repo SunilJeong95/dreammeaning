@@ -380,9 +380,16 @@ export default function ResultPage() {
               {/* Daily Advice */}
               <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl p-5 border border-slate-700 flex items-start gap-4 shadow-lg">
                 <span className="material-symbols-outlined text-[#1ed8f1] mt-1 shrink-0">auto_awesome</span>
-                <div>
+                <div className="flex-1 min-w-0">
                   <h4 className="text-xs font-bold uppercase text-[#1ed8f1] mb-1 tracking-widest">{t.adviceTitle}</h4>
-                  <p className="text-sm text-slate-200 font-medium font-body">{result.advice}</p>
+                  {unlocked ? (
+                    <p className="text-sm text-slate-200 font-medium font-body">{result.advice}</p>
+                  ) : (
+                    <div className="relative overflow-hidden" style={{ maxHeight: '1.4rem' }}>
+                      <p className="text-sm text-slate-200 font-medium font-body">{result.advice}</p>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-900/60 to-slate-800" />
+                    </div>
+                  )}
                 </div>
               </div>
             </>
