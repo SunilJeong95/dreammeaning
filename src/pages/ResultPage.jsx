@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLocation, useNavigate, Navigate } from 'react-router-dom';
+import html2canvas from 'html2canvas';
 import { useLang } from '../contexts/LanguageContext';
+import ShareCard from '../components/ShareCard';
 
 const DREAM_TYPE_GRADIENT = {
   Lucid:     'from-[#1ed8f1]/20 via-[#a855f7]/10 to-[#020617]',
@@ -70,6 +72,66 @@ export default function ResultPage() {
   const navigate  = useNavigate();
   const { t }     = useLang();
   const [tab, setTab] = useState('psychology');
+  const [isSharing,    setIsSharing]    = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const shareCardRef = useRef(null);
+
+  async function captureCard() {
+    return html2canvas(shareCardRef.current, {
+      useCORS: true,
+      scale: 2,
+      backgroundColor: '#020617',
+      logging: false,
+    });
+  }
+
+  function downloadBlob(blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'dream-analysis.png';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  async function handleShare() {
+    if (isSharing || isDownloading || !shareCardRef.current) return;
+    setIsSharing(true);
+    try {
+      const canvas = await captureCard();
+      canvas.toBlob(async (blob) => {
+        if (!blob) { setIsSharing(false); return; }
+        const file = new File([blob], 'dream-analysis.png', { type: 'image/png' });
+        try {
+          if (navigator.canShare?.({ files: [file] })) {
+            await navigator.share({ files: [file], title: result.title });
+          } else {
+            downloadBlob(blob);
+          }
+        } catch {
+          // user cancelled share — no-op
+        } finally {
+          setIsSharing(false);
+        }
+      }, 'image/png');
+    } catch {
+      setIsSharing(false);
+    }
+  }
+
+  async function handleDownload() {
+    if (isSharing || isDownloading || !shareCardRef.current) return;
+    setIsDownloading(true);
+    try {
+      const canvas = await captureCard();
+      canvas.toBlob((blob) => {
+        if (blob) downloadBlob(blob);
+        setIsDownloading(false);
+      }, 'image/png');
+    } catch {
+      setIsDownloading(false);
+    }
+  }
 
   if (!state?.result) return <Navigate to="/" replace />;
 
@@ -103,7 +165,30 @@ export default function ResultPage() {
             <span className="material-symbols-outlined">arrow_back</span>
           </button>
           <h1 className="text-sm font-bold uppercase tracking-widest text-slate-300">{t.resultTitle}</h1>
-          <div className="w-10" />
+          <div className="flex items-center gap-1">
+            <button
+              onClick={handleDownload}
+              disabled={isSharing || isDownloading}
+              className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-colors text-slate-300 disabled:opacity-50"
+              title={t.downloadBtn}
+            >
+              {isDownloading
+                ? <span className="material-symbols-outlined animate-spin text-[#1ed8f1]">progress_activity</span>
+                : <span className="material-symbols-outlined">download</span>
+              }
+            </button>
+            <button
+              onClick={handleShare}
+              disabled={isSharing || isDownloading}
+              className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-colors text-slate-300 disabled:opacity-50"
+              title={t.shareBtn}
+            >
+              {isSharing
+                ? <span className="material-symbols-outlined animate-spin text-[#1ed8f1]">progress_activity</span>
+                : <span className="material-symbols-outlined">ios_share</span>
+              }
+            </button>
+          </div>
         </header>
 
         {/* Content */}
@@ -273,6 +358,7 @@ export default function ResultPage() {
 
         </main>
       </div>
+      <ShareCard ref={shareCardRef} result={result} imageUrl={imageUrl} t={t} />
     </div>
   );
 }
