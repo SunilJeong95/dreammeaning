@@ -13,6 +13,15 @@ export default function Footer() {
           <span className="material-symbols-outlined text-gray-400">visibility</span>
           <span className="text-gray-400 font-semibold">DreamLens</span>
         </div>
+        <div className="flex items-center gap-4 text-sm text-gray-500">
+          <a
+            href={`mailto:${t.footerContactEmail}`}
+            className="flex items-center gap-1.5 hover:text-gray-300 transition-colors"
+          >
+            <span className="material-symbols-outlined text-base">mail</span>
+            {t.footerContact}
+          </a>
+        </div>
         <div className="text-gray-500 text-sm">{t.footerCopy}</div>
       </div>
     </footer>
