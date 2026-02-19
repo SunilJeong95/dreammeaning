@@ -1,63 +1,58 @@
+const FEATURES = [
+  'Full Jungian & Freudian analysis',
+  'AI dream image generation',
+  'Fortune indicators & lucky elements',
+  'SNS share card & PNG download',
+  'Nightmare rescripting guidance',
+];
+
+function scrollToInput() {
+  document.getElementById('dream-input')?.scrollIntoView({ behavior: 'smooth' });
+}
+
 export default function Pricing() {
   return (
-    <section className="max-w-5xl mx-auto px-6 mb-24">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-white mb-3">Choose Your Plan</h2>
-        <p className="text-gray-500 text-sm">All plans provide AI-generated entertainment content only.</p>
+    <section className="max-w-md mx-auto px-6 mb-24">
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold text-white mb-3">One Dream, One Price</h2>
+        <p className="text-gray-500 text-sm whitespace-nowrap">
+          No account needed. No subscription. Pay once, analyze once.
+        </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        {/* Free */}
-        <div className="p-8 rounded-3xl border border-white/10 bg-surface-glass hover:bg-surface-glass/80 transition-colors">
-          <h3 className="text-xl font-bold text-white mb-2">Dreamer Free</h3>
-          <div className="flex items-baseline gap-1 mb-6">
-            <span className="text-4xl font-black text-white">$0</span>
-            <span className="text-gray-400">/mo</span>
-          </div>
-          <ul className="space-y-4 mb-8">
-            {['3 Dreams/month', 'Standard Resolution', 'Basic Analysis'].map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm text-gray-300">
-                <span className="material-symbols-outlined text-green-400 text-lg">check_circle</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 text-white font-semibold transition-colors">
-            Start Dreaming
-          </button>
+      <div className="relative rounded-3xl p-8 border border-[#1ed8f1]/40 bg-[#020617] shadow-[0_0_60px_rgba(30,216,241,0.1)]">
+        {/* Top glow accent */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#1ed8f1]/60 to-transparent" />
+
+        {/* Price */}
+        <div className="text-center mb-8">
+          <div className="text-7xl font-black text-white tracking-tight mb-1">$0.99</div>
+          <p className="text-sm text-slate-500">per analysis</p>
         </div>
 
-        {/* Pro */}
-        <div className="relative p-8 rounded-3xl border border-primary/50 bg-background-dark/80 backdrop-blur-xl shadow-[0_0_40px_rgba(30,216,241,0.15)] md:scale-105 z-10">
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-background-dark text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-lg">
-            Most Popular
-          </div>
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-bold text-white">Dreamer Pro</h3>
-            <span className="text-primary material-symbols-outlined animate-pulse">auto_awesome</span>
-          </div>
-          <div className="flex items-baseline gap-1 mb-6">
-            <span className="text-5xl font-black text-white">$12</span>
-            <span className="text-gray-400">/mo</span>
-          </div>
-          <ul className="space-y-4 mb-8">
-            {[
-              'Unlimited Dreams',
-              'HD Image Export',
-              'Extended AI Symbol Analysis',
-              'Priority Generation',
-            ].map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm text-white font-medium">
-                <span className="material-symbols-outlined text-primary text-lg">check_circle</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <button className="w-full py-3 rounded-full bg-primary hover:bg-[#34e3fb] text-background-dark font-bold shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40">
-            Get Pro
-          </button>
-        </div>
+        {/* Features */}
+        <ul className="space-y-3 mb-8">
+          {FEATURES.map((f) => (
+            <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
+              <span className="material-symbols-outlined text-[#1ed8f1] text-base shrink-0">check_circle</span>
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <button
+          onClick={scrollToInput}
+          className="w-full py-4 rounded-full bg-[#1ed8f1] hover:bg-[#34e3fb] text-[#020617] font-black text-base shadow-lg shadow-[#1ed8f1]/25 hover:shadow-[#1ed8f1]/40 transition-all flex items-center justify-center gap-2"
+        >
+          Analyze My Dream
+          <span className="material-symbols-outlined text-xl">arrow_upward</span>
+        </button>
       </div>
+
+      <p className="text-center text-xs text-slate-600 mt-6">
+        AI-generated for entertainment only. Not professional psychological or medical advice.
+      </p>
     </section>
   );
 }

@@ -15,19 +15,18 @@ export default function Hero() {
     setLoading(true);
     setError(null);
     try {
-      const [analysisResult, imageResult] = await Promise.allSettled([
-        analyzeDream(dream),
-        generateDreamImage(dream),
-      ]);
+      const analysis = await analyzeDream(dream);
 
-      if (analysisResult.status === 'rejected') {
-        throw analysisResult.reason;
-      }
+      // Use the LLM-generated imagePrompt for visual alignment; fall back to raw dream text
+      const imageUrl = await generateDreamImage(analysis.imagePrompt ?? dream).catch(() => null);
+
+      sessionStorage.removeItem('dreamlens_unlocked');
+      sessionStorage.setItem('dreamlens_last_result', JSON.stringify({ result: analysis, imageUrl }));
 
       navigate('/result', {
         state: {
-          result: analysisResult.value,
-          imageUrl: imageResult.status === 'fulfilled' ? imageResult.value : null,
+          result: analysis,
+          imageUrl,
         },
       });
     } catch (e) {
@@ -38,7 +37,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="max-w-4xl mx-auto px-4 text-center mb-24 relative">
+    <section id="dream-input" className="max-w-4xl mx-auto px-4 text-center mb-24 relative">
       {/* Badge */}
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-8 uppercase">
         <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
@@ -54,7 +53,7 @@ export default function Hero() {
         <span className="text-white drop-shadow-md">{t.heroLine2}</span>
       </h1>
 
-      <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+      <p className="text-lg text-gray-300 max-w-xl mx-auto mb-12 leading-relaxed">
         {t.heroDesc}
       </p>
 

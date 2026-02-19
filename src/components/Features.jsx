@@ -15,7 +15,7 @@ export default function Features() {
 
       <div className="text-center mb-16 relative z-10">
         <h2 className="text-4xl font-bold text-white mb-4">{t.featuresTitle}</h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">{t.featuresSubtitle}</p>
+        <p className="text-gray-300 max-w-lg mx-auto leading-relaxed">{t.featuresSubtitle}</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8 relative z-10">
@@ -32,7 +32,7 @@ export default function Features() {
                 <span className={`material-symbols-outlined ${meta.iconColor} text-3xl`}>{meta.icon}</span>
               </div>
               <h3 className="text-xl font-bold text-white mb-3">{f.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{f.description}</p>
+              <p className="text-gray-300 text-sm leading-loose">{f.description}</p>
             </div>
           );
         })}

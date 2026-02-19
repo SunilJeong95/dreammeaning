@@ -64,7 +64,7 @@ function DreamCard({ dream }) {
         </div>
       </div>
       <div className="p-5 pt-2">
-        <p className="text-gray-400 text-sm">{dream.excerpt}</p>
+        <p className="text-gray-300 text-sm leading-relaxed">{dream.excerpt}</p>
       </div>
     </div>
   );
@@ -82,7 +82,7 @@ export default function LiveFeed() {
             {t.gallerySample}
           </span>
         </h2>
-        <p className="text-gray-400">{t.galleryDesc}</p>
+        <p className="text-gray-300 text-sm">{t.galleryDesc}</p>
       </div>
 
       <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">

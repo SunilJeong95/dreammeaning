@@ -5,15 +5,15 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/10 bg-background-dark relative z-10">
-      <div className="max-w-7xl mx-auto px-6 pt-6 pb-2 text-center">
-        <p className="text-xs text-gray-600 leading-relaxed">{t.footerDisclaimer}</p>
+      <div className="max-w-3xl mx-auto px-6 pt-8 pb-4 text-center">
+        <p className="text-xs text-gray-500 leading-loose">{t.footerDisclaimer}</p>
       </div>
-      <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-gray-500">visibility</span>
-          <span className="text-gray-500 font-semibold">DreamLens</span>
+          <span className="material-symbols-outlined text-gray-400">visibility</span>
+          <span className="text-gray-400 font-semibold">DreamLens</span>
         </div>
-        <div className="text-gray-600 text-sm">{t.footerCopy}</div>
+        <div className="text-gray-500 text-sm">{t.footerCopy}</div>
       </div>
     </footer>
   );

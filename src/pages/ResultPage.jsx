@@ -1,8 +1,9 @@
-import { useState, useRef } from 'react';
-import { useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { useLocation, useNavigate, useSearchParams, Navigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import { useLang } from '../contexts/LanguageContext';
 import ShareCard from '../components/ShareCard';
+import { createCheckout, verifyCheckout, PRODUCT_IDS } from '../services/polar';
 
 const DREAM_TYPE_GRADIENT = {
   Lucid:     'from-[#1ed8f1]/20 via-[#a855f7]/10 to-[#020617]',
@@ -68,13 +69,45 @@ function radarPoints(metrics) {
 }
 
 export default function ResultPage() {
-  const { state } = useLocation();
-  const navigate  = useNavigate();
-  const { t }     = useLang();
-  const [tab, setTab] = useState('psychology');
+  const { state }        = useLocation();
+  const navigate         = useNavigate();
+  const [searchParams]   = useSearchParams();
+  const { t }            = useLang();
+  const [tab, setTab]    = useState('psychology');
   const [isSharing,    setIsSharing]    = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isVerifying,  setIsVerifying]  = useState(false);
+  const [unlocked, setUnlocked] = useState(
+    () => sessionStorage.getItem('dreamlens_unlocked') === 'true'
+  );
   const shareCardRef = useRef(null);
+
+  const checkoutId = searchParams.get('checkout_id');
+
+  // Verify payment after Polar redirect
+  useEffect(() => {
+    if (!checkoutId || unlocked) return;
+    setIsVerifying(true);
+    verifyCheckout(checkoutId)
+      .then((ok) => {
+        if (ok) {
+          sessionStorage.setItem('dreamlens_unlocked', 'true');
+          setUnlocked(true);
+        }
+      })
+      .catch(() => { /* silent — show paywall */ })
+      .finally(() => setIsVerifying(false));
+  }, [checkoutId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Restore result from router state or sessionStorage (after Polar redirect)
+  const savedData = (() => {
+    if (state?.result) return { result: state.result, imageUrl: state.imageUrl ?? null };
+    try {
+      const raw = sessionStorage.getItem('dreamlens_last_result');
+      if (raw) return JSON.parse(raw);
+    } catch { /* ignore */ }
+    return null;
+  })();
 
   async function captureCard() {
     return html2canvas(shareCardRef.current, {
@@ -95,6 +128,7 @@ export default function ResultPage() {
   }
 
   async function handleShare() {
+    if (!unlocked) { createCheckout(PRODUCT_IDS.single); return; }
     if (isSharing || isDownloading || !shareCardRef.current) return;
     setIsSharing(true);
     try {
@@ -104,7 +138,7 @@ export default function ResultPage() {
         const file = new File([blob], 'dream-analysis.png', { type: 'image/png' });
         try {
           if (navigator.canShare?.({ files: [file] })) {
-            await navigator.share({ files: [file], title: result.title });
+            await navigator.share({ files: [file], title: savedData.result.title });
           } else {
             downloadBlob(blob);
           }
@@ -120,6 +154,7 @@ export default function ResultPage() {
   }
 
   async function handleDownload() {
+    if (!unlocked) { createCheckout(PRODUCT_IDS.single); return; }
     if (isSharing || isDownloading || !shareCardRef.current) return;
     setIsDownloading(true);
     try {
@@ -133,10 +168,9 @@ export default function ResultPage() {
     }
   }
 
-  if (!state?.result) return <Navigate to="/" replace />;
+  if (!savedData) return <Navigate to="/" replace />;
 
-  const result     = state.result;
-  const imageUrl   = state.imageUrl ?? null;
+  const { result, imageUrl } = savedData;
   const gradient   = DREAM_TYPE_GRADIENT[result.dreamType] ?? DREAM_TYPE_GRADIENT.Abstract;
   const typeIcon   = DREAM_TYPE_ICON[result.dreamType]     ?? 'auto_awesome';
   const dataPoints = radarPoints(result.metrics);
@@ -293,16 +327,49 @@ export default function ResultPage() {
                 </div>
               </section>
 
-              {/* Deep Analysis */}
+              {/* Deep Analysis — locked behind paywall */}
               <section className="rounded-2xl border border-slate-800 bg-surface-dark p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="material-symbols-outlined text-[#f59e0b]">psychology</span>
                   <h3 className="text-lg font-bold text-white">{t.deepTitle}</h3>
                 </div>
-                <div className="space-y-4">
-                  <p className="text-sm text-slate-300 leading-relaxed">{result.interpretation}</p>
-                  <p className="text-sm text-slate-300 leading-relaxed">{result.deepAnalysis}</p>
-                </div>
+
+                {unlocked ? (
+                  <div className="space-y-4">
+                    <p className="text-sm text-slate-300 leading-relaxed">{result.interpretation}</p>
+                    <p className="text-sm text-slate-300 leading-relaxed">{result.deepAnalysis}</p>
+                  </div>
+                ) : (
+                  <div>
+                    {/* Teaser — first ~3 lines visible */}
+                    <div className="relative overflow-hidden" style={{ maxHeight: '4.5rem' }}>
+                      <p className="text-sm text-slate-300 leading-relaxed">{result.interpretation}</p>
+                      {/* Fade-out gradient */}
+                      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-surface-dark to-transparent" />
+                    </div>
+
+                    {/* Blurred remainder */}
+                    <div
+                      className="mt-2 space-y-3 select-none pointer-events-none"
+                      style={{ filter: 'blur(4px)' }}
+                    >
+                      <p className="text-sm text-slate-300 leading-relaxed line-clamp-2">{result.deepAnalysis}</p>
+                    </div>
+
+                    {/* Unlock CTA */}
+                    <div className="mt-5 flex flex-col items-center gap-2 pt-4 border-t border-slate-800/60">
+                      <span className="material-symbols-outlined text-[#f59e0b] text-3xl">lock</span>
+                      <p className="text-xs text-slate-400 text-center max-w-[220px] leading-relaxed">{t.unlockDesc}</p>
+                      <button
+                        onClick={() => createCheckout(PRODUCT_IDS.single)}
+                        disabled={isVerifying}
+                        className="mt-1 px-6 py-2.5 rounded-full bg-[#1ed8f1] text-[#020617] font-black text-sm hover:bg-[#34e3fb] transition-all shadow-lg shadow-[#1ed8f1]/20 disabled:opacity-50"
+                      >
+                        {isVerifying ? t.verifying : t.unlockBtn}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </section>
 
               {/* Disclaimer */}

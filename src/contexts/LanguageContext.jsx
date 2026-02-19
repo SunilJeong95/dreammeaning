@@ -7,7 +7,7 @@ const t = {
   heroLine2: 'Explore Your Dreams.',
   heroDesc:
     'AI-powered dream analysis and image generation for entertainment and creative self-reflection. Describe your dream and receive an imaginative, AI-generated interpretation — just for fun.',
-  placeholder: 'Last night, I was flying over a city made of crystal...',
+  placeholder: 'Last night, I was flying over a glowing crystal city at dusk. I felt weightless but strangely anxious. A shadowy figure was chasing me from below, and the towers kept shifting from gold to deep blue. Then I woke up just before I landed...',
   analyzeBtn: 'Analyze & Draw',
   analyzing: 'Analyzing...',
   privacy: 'Your entries are private and never shared.',
@@ -69,6 +69,12 @@ const t = {
   shareSaving: 'Saving...',
   shareWatermark: 'Analyzed by DreamLens AI',
   downloadBtn: 'Save Image',
+
+  // Paywall
+  unlockBtn: 'Unlock Deep Analysis — $0.99',
+  unlockDesc: 'Unlock the full psychological deep analysis, share card & image download.',
+  verifying: 'Verifying payment...',
+  unlocking: 'Unlocking...',
 };
 
 const LanguageContext = createContext(t);
