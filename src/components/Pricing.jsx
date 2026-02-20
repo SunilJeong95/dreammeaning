@@ -26,7 +26,7 @@ export default function Pricing() {
 
         {/* Price */}
         <div className="text-center mb-8">
-          <div className="text-7xl font-black text-white tracking-tight mb-1">$0.99</div>
+          <div className="text-7xl font-black text-white tracking-tight mb-1">$2.88</div>
           <p className="text-sm text-slate-500">per analysis</p>
         </div>
 
