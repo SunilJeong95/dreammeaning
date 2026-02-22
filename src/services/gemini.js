@@ -30,6 +30,30 @@ function getGenAI() {
   return new GoogleGenerativeAI(API_KEY);
 }
 
+// ─── RETRY HELPER ─────────────────────────────────────────────────────────────
+function isRateLimitError(err) {
+  const msg = (err?.message || '').toLowerCase();
+  return (
+    err?.status === 429 ||
+    msg.includes('resource has been exhausted') ||
+    msg.includes('quota exceeded') ||
+    msg.includes('too many requests') ||
+    msg.includes('rate limit') ||
+    msg.includes(': 429')
+  );
+}
+
+async function withRetry(fn, maxAttempts = 3, baseDelayMs = 3000) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (!isRateLimitError(err) || attempt === maxAttempts) throw err;
+      await new Promise((r) => setTimeout(r, baseDelayMs * attempt));
+    }
+  }
+}
+
 // ─── SYSTEM PROMPT ────────────────────────────────────────────────────────────
 // Synthesizes: Jungian archetypes, Freudian latent content, Korean Taemong,
 // Chinese Zhou Gong paradoxes, global numerology, IRT nightmare protocol.
@@ -148,10 +172,12 @@ Rules:
 
 Dream: "${dreamText}"`;
 
-  const result = await model.generateContent(prompt);
-  const raw  = result.response.text();
-  const text = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/g, '').trim();
-  return JSON.parse(text);
+  return withRetry(async () => {
+    const result = await model.generateContent(prompt);
+    const raw  = result.response.text();
+    const text = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/g, '').trim();
+    return JSON.parse(text);
+  });
 }
 
 // ─── generateDreamImage ───────────────────────────────────────────────────────
@@ -164,23 +190,29 @@ export async function generateDreamImage(imagePrompt) {
 
   const fullPrompt = `${imagePrompt}. Style: ethereal surrealism, dark mystical void background, bioluminescent cyan and deep violet accents, cinematic composition, hyper-detailed digital art, 4K, no text, no watermarks.`;
 
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${API_KEY}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: fullPrompt }] }],
-        generationConfig: { responseModalities: ['IMAGE'] },
-      }),
+  return withRetry(async () => {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: fullPrompt }] }],
+          generationConfig: { responseModalities: ['IMAGE'] },
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const err = new Error(`Image generation failed: ${res.status}`);
+      err.status = res.status;
+      throw err;
     }
-  );
 
-  if (!res.ok) throw new Error(`Image generation failed: ${res.status}`);
+    const data = await res.json();
+    const part = data.candidates?.[0]?.content?.parts?.find((p) => p.inlineData);
+    if (!part) throw new Error('No image in response');
 
-  const data = await res.json();
-  const part = data.candidates?.[0]?.content?.parts?.find((p) => p.inlineData);
-  if (!part) throw new Error('No image in response');
-
-  return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+    return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+  });
 }
