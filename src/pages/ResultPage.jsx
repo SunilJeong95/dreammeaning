@@ -128,6 +128,7 @@ export default function ResultPage() {
   }
 
   async function handleShare() {
+    if (!unlocked) { createCheckout(PRODUCT_IDS.single); return; }
     if (isSharing || isDownloading || !shareCardRef.current) return;
     setIsSharing(true);
     try {
@@ -153,6 +154,7 @@ export default function ResultPage() {
   }
 
   async function handleDownload() {
+    if (!unlocked) { createCheckout(PRODUCT_IDS.single); return; }
     if (isSharing || isDownloading || !shareCardRef.current) return;
     setIsDownloading(true);
     try {

@@ -73,7 +73,7 @@ const t = {
   downloadBtn: 'Save Image',
 
   // Paywall
-  unlockBtn: 'Unlock Deep Analysis — $0.99',
+  unlockBtn: 'Unlock Deep Analysis — $2.88',
   unlockDesc: 'Unlock the full psychological deep analysis, share card & image download.',
   verifying: 'Verifying payment...',
   unlocking: 'Unlocking...',
