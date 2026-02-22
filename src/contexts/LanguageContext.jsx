@@ -6,7 +6,7 @@ const t = {
   heroLine1: 'Decode Your Dreams.',
   heroLine2: 'Explore Your Dreams.',
   heroDesc:
-    'AI-powered dream analysis and image generation for entertainment and creative self-reflection. Describe your dream and receive an imaginative, AI-generated interpretation — just for fun.',
+    'AI-powered dream analysis and image generation for entertainment and creative self-reflection. Describe your dream and receive an imaginative, AI-generated interpretation.',
   placeholder: 'Last night, I was flying over a glowing crystal city at dusk. I felt weightless but strangely anxious. A shadowy figure was chasing me from below, and the towers kept shifting from gold to deep blue. Then I woke up just before I landed...',
   analyzeBtn: 'Analyze & Draw',
   analyzing: 'Analyzing...',

@@ -109,7 +109,7 @@ CONTENT QUALITY STANDARD:
   (4) What might keep showing up in your daily life — as tension, avoidance, or a nagging feeling — if you don't pay attention to this dream's message?
   (5) End with one insight that feels like it could only be written for THIS exact dream — something specific and surprising that makes the reader feel truly seen.
 
-• advice: 3 sentences. Not generic. Each sentence flows naturally from a specific image in the dream. Warm, concrete, slightly poetic — like a note left by your wiser self. Easy enough for a 14-year-old to understand.
+• advice: 3 sentences. Each sentence must be a specific, concrete action the dreamer can actually do TODAY — something they can start within the next few hours. Derive each action directly from a symbol in the dream (e.g. if there was water, suggest something involving stillness or flow; if there was a chase, suggest something about facing a real-life avoidance). No vague encouragement — only doable, real-world steps. Warm and easy to understand.
 
 JSON schema:
 {
