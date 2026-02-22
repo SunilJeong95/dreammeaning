@@ -339,8 +339,8 @@ export default function ResultPage() {
                   </div>
                 ) : (
                   <div>
-                    {/* Teaser — first ~3 lines visible */}
-                    <div className="relative overflow-hidden" style={{ maxHeight: '4.5rem' }}>
+                    {/* Teaser — first 1 line visible */}
+                    <div className="relative overflow-hidden" style={{ maxHeight: '1.5rem' }}>
                       <p className="text-sm text-slate-300 leading-relaxed">{result.interpretation}</p>
                       {/* Fade-out gradient */}
                       <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-surface-dark to-transparent" />
