@@ -87,22 +87,29 @@ export async function analyzeDream(dreamText) {
 
   const prompt = `Analyze this dream and output ONLY a valid JSON object — no markdown, no code fences.
 
-CONTENT QUALITY STANDARD — this analysis must be worth paying for:
+WRITING STYLE — apply to ALL text fields (interpretation, deepAnalysis, advice):
+• Write as if explaining to a curious friend, not an academic. Zero jargon.
+• If you must use a psychological term (e.g. "Shadow", "Anima"), immediately follow it with a plain-language explanation in parentheses — e.g. "the Shadow (the hidden side of yourself you rarely show others)".
+• Use short sentences. Concrete images. Everyday vocabulary.
+• Warm, empathetic tone — like a wise friend who truly understands you.
+• No bullet points inside fields — flowing prose only.
+
+CONTENT QUALITY STANDARD:
 • interpretation: 5-6 sentences. Follow this structure exactly:
-  (1) Name the specific Jungian archetype OR Freudian mechanism at work (e.g. "This dream activates the Shadow archetype..." or "Through condensation, the unconscious merges...").
-  (2) Trace the symbolic chain from manifest surface to latent meaning — what is the dream's imagery actually hiding?
-  (3) What core emotional truth or unresolved conflict is being forced into consciousness?
-  (4) Layer in the cultural fortune reading — what does the Eastern tradition (Zhou Gong or Taemong) say about these same symbols, and how does it complement or contradict the psychological view?
-  (5) What is the psyche rehearsing, mourning, or preparing the dreamer to face?
+  (1) Open with what the dream's most striking image reveals about what you are feeling or wanting right now — in plain terms.
+  (2) Explain what the key symbols are "really" about underneath the surface — what hidden emotion or desire are they standing in for?
+  (3) What important truth or unresolved feeling is the dream pushing you to notice?
+  (4) Bring in the Eastern wisdom angle (Zhou Gong or Taemong): what do these symbols mean in that tradition, and how does it add to or flip the psychological reading? Explain simply.
+  (5) What is the dream quietly rehearsing, grieving, or getting you ready to face in waking life?
 
-• deepAnalysis: 5-6 sentences of premium depth. Follow this structure:
-  (1) Identify the hidden complex or shadow element that the obvious reading conceals — go one layer deeper than the interpretation.
-  (2) Name the specific part of the self seeking integration: what quality, emotion, or life truth has the dreamer disowned or not yet claimed?
-  (3) Situate this in a developmental or life-stage context: what psychological threshold is the dreamer standing at? (e.g. individuation, mid-life confrontation, an unprocessed grief, a suppressed ambition)
-  (4) What is the cost of continued avoidance — what will keep recurring in waking life if this dream's message is ignored?
-  (5) End with one profound, uniquely tailored insight that could only apply to THIS specific dream — something that would make the reader feel genuinely seen.
+• deepAnalysis: 5-6 sentences of deeper insight. Follow this structure:
+  (1) Dig one layer deeper than the obvious reading — what is the dream really about that the dreamer might not want to look at yet? Say it gently but clearly.
+  (2) What part of yourself — a strength, an emotion, a desire — have you been pushing away or ignoring? Name it in everyday words.
+  (3) Connect it to where the dreamer seems to be in life right now: a crossroads, a change, something unfinished. Make it feel personally relevant.
+  (4) What might keep showing up in your daily life — as tension, avoidance, or a nagging feeling — if you don't pay attention to this dream's message?
+  (5) End with one insight that feels like it could only be written for THIS exact dream — something specific and surprising that makes the reader feel truly seen.
 
-• advice: 3 sentences. Not generic. Derive each sentence from a specific symbol in the dream. Make it feel like a private message from the unconscious — concrete, warm, and slightly uncanny.
+• advice: 3 sentences. Not generic. Each sentence flows naturally from a specific image in the dream. Warm, concrete, slightly poetic — like a note left by your wiser self. Easy enough for a 14-year-old to understand.
 
 JSON schema:
 {

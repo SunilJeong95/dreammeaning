@@ -14,9 +14,9 @@ export default function Pricing() {
   return (
     <section className="max-w-md mx-auto px-6 mb-24">
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold text-white mb-3">One Dream, One Price</h2>
+        <h2 className="text-3xl font-bold text-white mb-3">Completely Free</h2>
         <p className="text-gray-500 text-sm whitespace-nowrap">
-          No account needed. No subscription. Pay once, analyze once.
+          No account needed. No subscription. No payment required.
         </p>
       </div>
 
@@ -26,8 +26,8 @@ export default function Pricing() {
 
         {/* Price */}
         <div className="text-center mb-8">
-          <div className="text-7xl font-black text-white tracking-tight mb-1">$2.88</div>
-          <p className="text-sm text-slate-500">per analysis</p>
+          <div className="text-7xl font-black text-[#1ed8f1] tracking-tight mb-1">Free</div>
+          <p className="text-sm text-slate-500">full analysis, always</p>
         </div>
 
         {/* Features */}

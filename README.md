@@ -1,6 +1,6 @@
 # DreamLens — AI Dream Interpretation Service
 
-> **Last updated:** 2026-02-19 (pricing updated to USD)
+> **Last updated:** 2026-02-22 (removed paywall — all analysis now free)
 
 ---
 
