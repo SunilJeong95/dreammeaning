@@ -27,7 +27,6 @@ export default function Pricing() {
         {/* Price */}
         <div className="text-center mb-8">
           <div className="text-7xl font-black text-[#1ed8f1] tracking-tight mb-1">Free</div>
-          <p className="text-sm text-slate-500">full analysis, always</p>
         </div>
 
         {/* Features */}
