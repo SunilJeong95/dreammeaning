@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useLang } from '../contexts/LanguageContext';
 
 export default function Footer() {
@@ -13,7 +14,9 @@ export default function Footer() {
           <span className="material-symbols-outlined text-gray-400">visibility</span>
           <span className="text-gray-400 font-semibold">DreamLens</span>
         </div>
-        <div className="flex items-center gap-4 text-sm text-gray-500">
+        <nav className="flex items-center gap-5 text-sm text-gray-500">
+          <Link to="/about" className="hover:text-gray-300 transition-colors">About</Link>
+          <Link to="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
           <a
             href={`mailto:${t.footerContactEmail}`}
             className="flex items-center gap-1.5 hover:text-gray-300 transition-colors"
@@ -21,7 +24,7 @@ export default function Footer() {
             <span className="material-symbols-outlined text-base">mail</span>
             {t.footerContact}
           </a>
-        </div>
+        </nav>
         <div className="text-gray-500 text-sm">{t.footerCopy}</div>
       </div>
     </footer>

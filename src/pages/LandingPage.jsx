@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import LiveFeed from '../components/LiveFeed';
 import Features from '../components/Features';
 import Pricing from '../components/Pricing';
+import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 
 export default function LandingPage() {
@@ -22,6 +23,7 @@ export default function LandingPage() {
         <LiveFeed />
         <Features />
         <Pricing />
+        <FAQ />
       </main>
 
       <Footer />

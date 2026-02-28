@@ -1,6 +1,6 @@
 # DreamLens — AI Dream Interpretation Service
 
-> **Last updated:** 2026-02-22 (removed paywall — all analysis now free)
+> **Last updated:** 2026-02-28 (add Privacy Policy, About, FAQ pages for AdSense compliance)
 
 ---
 
