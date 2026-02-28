@@ -145,14 +145,14 @@ JSON schema:
   "advice": "3 sentences, symbol-derived, personal and concrete",
   "lucky": {
     "number": "2-digit string from symbol map e.g. '07'",
-    "color": "Color name derived from dominant symbol map",
-    "direction": "North|South|East|West",
-    "totem": "Archetype-matched animal"
+    "color": "Color name in input language",
+    "direction": "Direction word in input language",
+    "totem": "Archetype-matched animal name in input language"
   },
   "emotions": [
-    {"name": "Primary emotion", "value": 60},
-    {"name": "Secondary emotion", "value": 25},
-    {"name": "Tertiary emotion", "value": 15}
+    {"name": "Primary emotion name in input language", "value": 60},
+    {"name": "Secondary emotion name in input language", "value": 25},
+    {"name": "Tertiary emotion name in input language", "value": 15}
   ],
   "metrics": {
     "fortune": 75,
@@ -161,12 +161,29 @@ JSON schema:
     "realism": 45,
     "nightmare": 20
   },
+  "uiLabels": {
+    "tabPsychology": "Psychology",
+    "tabFortune": "Fortune",
+    "metricsTitle": "Dream Metrics",
+    "metricsResonance": "High Resonance",
+    "emotionalSpectrum": "Emotional Spectrum",
+    "emotionalMixed": "Mixed",
+    "deepTitle": "Deep Analysis",
+    "adviceTitle": "Daily Advice",
+    "luckyTitle": "Lucky Signifiers",
+    "luckyDisclaimer": "For entertainment purposes only. Not a prediction or guarantee.",
+    "labelNumber": "Number",
+    "labelColor": "Color",
+    "labelDirection": "Direction",
+    "labelTotem": "Totem",
+    "radarLabels": ["Good Fortune", "Creativity", "Stress", "Realism", "Nightmare"]
+  },
   "imagePrompt": "Highly detailed English diffusion-model prompt: specific visual elements from this dream, dominant color palette, art style, cinematic lighting, no text"
 }
 
 Rules:
-- Detect the dream's input language; write all text fields except dreamType and imagePrompt in that language
-- dreamType always in English; imagePrompt always in English
+- Detect the dream's input language; translate ALL text fields (title, summary, interpretation, deepAnalysis, advice, lucky.color, lucky.direction, lucky.totem, emotions[].name, AND every string inside uiLabels) into that language
+- dreamType always in English (used for internal styling); imagePrompt always in English (for image model)
 - emotions[].value must sum to exactly 100; all metrics: integers 0–100
 - Nightmares: apply IRT reframe in interpretation/deepAnalysis (empathy first, rescript the ending, name a talisman in advice)
 

@@ -171,6 +171,11 @@ export default function ResultPage() {
   if (!savedData) return <Navigate to="/" replace />;
 
   const { result, imageUrl } = savedData;
+
+  // Merge AI-translated UI labels over the default English strings.
+  // Makes every label appear in the same language as the dream input, with English fallback.
+  const ui = { ...t, ...(result.uiLabels ?? {}) };
+
   const gradient   = DREAM_TYPE_GRADIENT[result.dreamType] ?? DREAM_TYPE_GRADIENT.Abstract;
   const typeIcon   = DREAM_TYPE_ICON[result.dreamType]     ?? 'auto_awesome';
   const dataPoints = radarPoints(result.metrics);
@@ -204,7 +209,7 @@ export default function ResultPage() {
               onClick={handleDownload}
               disabled={isSharing || isDownloading}
               className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-colors text-slate-300 disabled:opacity-50"
-              title={t.downloadBtn}
+              title={ui.downloadBtn}
             >
               {isDownloading
                 ? <span className="material-symbols-outlined animate-spin text-[#1ed8f1]">progress_activity</span>
@@ -215,7 +220,7 @@ export default function ResultPage() {
               onClick={handleShare}
               disabled={isSharing || isDownloading}
               className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 transition-colors text-slate-300 disabled:opacity-50"
-              title={t.shareBtn}
+              title={ui.shareBtn}
             >
               {isSharing
                 ? <span className="material-symbols-outlined animate-spin text-[#1ed8f1]">progress_activity</span>
@@ -264,13 +269,13 @@ export default function ResultPage() {
               onClick={() => setTab('psychology')}
               className={`flex-1 py-2 text-sm font-bold text-center rounded-full relative z-10 transition-colors ${tab === 'psychology' ? 'text-[#1ed8f1]' : 'text-slate-500 hover:text-slate-300'}`}
             >
-              {t.tabPsychology}
+              {ui.tabPsychology}
             </button>
             <button
               onClick={() => setTab('fortune')}
               className={`flex-1 py-2 text-sm font-bold text-center rounded-full relative z-10 transition-colors ${tab === 'fortune' ? 'text-[#1ed8f1]' : 'text-slate-500 hover:text-slate-300'}`}
             >
-              {t.tabFortune}
+              {ui.tabFortune}
             </button>
           </div>
 
@@ -279,8 +284,8 @@ export default function ResultPage() {
               {/* Dream Metrics */}
               <section className="glass-panel rounded-2xl p-6 space-y-6">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-bold text-slate-200">{t.metricsTitle}</h3>
-                  <span className="text-xs text-[#1ed8f1] bg-[#1ed8f1]/10 px-2 py-1 rounded">{t.metricsResonance}</span>
+                  <h3 className="text-lg font-bold text-slate-200">{ui.metricsTitle}</h3>
+                  <span className="text-xs text-[#1ed8f1] bg-[#1ed8f1]/10 px-2 py-1 rounded">{ui.metricsResonance}</span>
                 </div>
 
                 {/* Radar Chart */}
@@ -300,7 +305,7 @@ export default function ResultPage() {
                     />
                     {RADAR_ANCHORS.map((a, i) => (
                       <text key={i} fill="#64748b" fontSize="5.5" textAnchor={a.textAnchor} x={a.x} y={a.y}>
-                        {t.radarLabels[i]}
+                        {ui.radarLabels[i]}
                       </text>
                     ))}
                   </svg>
@@ -309,8 +314,8 @@ export default function ResultPage() {
                 {/* Emotional Spectrum */}
                 <div className="space-y-3">
                   <div className="flex justify-between text-xs font-medium uppercase tracking-wider text-slate-400">
-                    <span>{t.emotionalSpectrum}</span>
-                    <span>{t.emotionalMixed}</span>
+                    <span>{ui.emotionalSpectrum}</span>
+                    <span>{ui.emotionalMixed}</span>
                   </div>
                   <div className="h-3 w-full bg-slate-800 rounded-full overflow-hidden flex">
                     {result.emotions?.map((e, i) => (
@@ -331,7 +336,7 @@ export default function ResultPage() {
               <section className="rounded-2xl border border-slate-800 bg-surface-dark p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="material-symbols-outlined text-[#f59e0b]">psychology</span>
-                  <h3 className="text-lg font-bold text-white">{t.deepTitle}</h3>
+                  <h3 className="text-lg font-bold text-white">{ui.deepTitle}</h3>
                 </div>
 
                 {unlocked ? (
@@ -381,7 +386,7 @@ export default function ResultPage() {
               <div className="rounded-2xl border border-slate-800 bg-surface-dark p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="material-symbols-outlined text-[#1ed8f1]">auto_awesome</span>
-                  <h3 className="text-lg font-bold text-white">{t.adviceTitle}</h3>
+                  <h3 className="text-lg font-bold text-white">{ui.adviceTitle}</h3>
                 </div>
                 <p className="text-sm text-slate-300 leading-relaxed">{result.advice}</p>
               </div>
@@ -389,33 +394,33 @@ export default function ResultPage() {
           ) : (
             /* Fortune Tab */
             <section className="space-y-4">
-              <h3 className="text-lg font-bold text-slate-200 px-1">{t.luckyTitle}</h3>
-              <p className="text-[11px] text-slate-600 px-1">{t.luckyDisclaimer}</p>
+              <h3 className="text-lg font-bold text-slate-200 px-1">{ui.luckyTitle}</h3>
+              <p className="text-[11px] text-slate-600 px-1">{ui.luckyDisclaimer}</p>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-surface-dark border border-slate-800 p-4 rounded-2xl flex flex-col justify-between h-28 relative overflow-hidden group">
                   <div className="absolute -right-4 -top-4 w-16 h-16 bg-[#1ed8f1]/10 rounded-full blur-xl group-hover:bg-[#1ed8f1]/20 transition-all" />
-                  <span className="text-slate-400 text-xs font-medium uppercase">{t.labelNumber}</span>
+                  <span className="text-slate-400 text-xs font-medium uppercase">{ui.labelNumber}</span>
                   <div className="text-3xl font-bold text-white">{result.lucky?.number ?? '07'}</div>
                   <span className="material-symbols-outlined absolute bottom-4 right-4 text-slate-700">123</span>
                 </div>
 
                 <div className="bg-surface-dark border border-slate-800 p-4 rounded-2xl flex flex-col justify-between h-28 relative overflow-hidden group">
                   <div className={`absolute -right-4 -top-4 w-16 h-16 rounded-full blur-xl transition-all ${colorStyle.glow}`} />
-                  <span className="text-slate-400 text-xs font-medium uppercase">{t.labelColor}</span>
+                  <span className="text-slate-400 text-xs font-medium uppercase">{ui.labelColor}</span>
                   <div className={`text-xl font-bold ${colorStyle.text}`}>{result.lucky?.color ?? 'Deep Blue'}</div>
                   <div className={`w-4 h-4 rounded-full absolute bottom-4 right-4 ${colorStyle.dot}`} style={{ boxShadow: colorStyle.shadow }} />
                 </div>
 
                 <div className="bg-surface-dark border border-slate-800 p-4 rounded-2xl flex flex-col justify-between h-28 relative overflow-hidden group">
                   <div className="absolute -right-4 -top-4 w-16 h-16 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/20 transition-all" />
-                  <span className="text-slate-400 text-xs font-medium uppercase">{t.labelDirection}</span>
+                  <span className="text-slate-400 text-xs font-medium uppercase">{ui.labelDirection}</span>
                   <div className="text-xl font-bold text-white">{result.lucky?.direction ?? 'East'}</div>
                   <span className="material-symbols-outlined absolute bottom-4 right-4 text-slate-700">explore</span>
                 </div>
 
                 <div className="bg-surface-dark border border-slate-800 p-4 rounded-2xl flex flex-col justify-between h-28 relative overflow-hidden group">
                   <div className="absolute -right-4 -top-4 w-16 h-16 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/20 transition-all" />
-                  <span className="text-slate-400 text-xs font-medium uppercase">{t.labelTotem}</span>
+                  <span className="text-slate-400 text-xs font-medium uppercase">{ui.labelTotem}</span>
                   <div className="text-xl font-bold text-white">{result.lucky?.totem ?? 'Owl'}</div>
                   <span className="material-symbols-outlined absolute bottom-4 right-4 text-slate-700">pets</span>
                 </div>
@@ -425,7 +430,7 @@ export default function ResultPage() {
 
         </main>
       </div>
-      <ShareCard ref={shareCardRef} result={result} imageUrl={imageUrl} t={t} />
+      <ShareCard ref={shareCardRef} result={result} imageUrl={imageUrl} t={ui} />
     </div>
   );
 }
