@@ -37,15 +37,15 @@ export default function Hero() {
   }
 
   return (
-    <section id="dream-input" className="max-w-4xl mx-auto px-4 text-center mb-24 relative">
+    <section id="dream-input" className="max-w-4xl mx-auto px-4 text-center mb-12 md:mb-24 relative">
       {/* Badge */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-8 uppercase">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-5 md:mb-8 uppercase">
         <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
         {t.badge}
       </div>
 
       {/* Headline */}
-      <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[1.1]">
+      <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-4 md:mb-6 leading-[1.1]">
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-primary to-accent-purple drop-shadow-[0_0_15px_rgba(30,216,241,0.3)]">
           {t.heroLine1}
         </span>
@@ -53,7 +53,7 @@ export default function Hero() {
         <span className="text-white drop-shadow-md">{t.heroLine2}</span>
       </h1>
 
-      <p className="text-lg text-gray-300 max-w-xl mx-auto mb-12 leading-relaxed">
+      <p className="text-base md:text-lg text-gray-300 max-w-xl mx-auto mb-8 md:mb-12 leading-relaxed px-2">
         {t.heroDesc}
       </p>
 

@@ -18,7 +18,7 @@ export default function LandingPage() {
 
       <Header />
 
-      <main className="relative z-10 pt-32 pb-20">
+      <main className="relative z-10 pt-24 md:pt-32 pb-12 md:pb-20">
         <Hero />
         <LiveFeed />
         <Features />

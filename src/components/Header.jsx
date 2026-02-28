@@ -15,13 +15,14 @@ export default function Header() {
           </span>
         </Link>
         {/* Nav */}
-        <nav className="flex items-center gap-6 text-sm text-gray-400">
-          <Link to="/about" className="hover:text-white transition-colors">About</Link>
+        <nav className="flex items-center gap-3 sm:gap-6 text-sm text-gray-400">
+          <Link to="/about" className="hidden sm:block hover:text-white transition-colors">About</Link>
           <Link
             to="/#dream-input"
-            className="bg-primary/10 border border-primary/30 text-primary font-semibold px-4 py-1.5 rounded-full hover:bg-primary/20 transition-colors"
+            className="bg-primary/10 border border-primary/30 text-primary font-semibold px-3 sm:px-4 py-1.5 rounded-full hover:bg-primary/20 transition-colors text-xs sm:text-sm whitespace-nowrap"
           >
-            Analyze Dream
+            <span className="hidden sm:inline">Analyze Dream</span>
+            <span className="sm:hidden">Analyze</span>
           </Link>
         </nav>
       </div>

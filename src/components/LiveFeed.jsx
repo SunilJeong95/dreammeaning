@@ -74,8 +74,8 @@ export default function LiveFeed() {
   const { t } = useLang();
 
   return (
-    <section className="max-w-7xl mx-auto px-6 mb-32">
-      <div className="mb-10">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 mb-16 md:mb-32">
+      <div className="mb-6 md:mb-10">
         <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
           {t.galleryTitle}
           <span className="text-xs font-normal text-gray-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full tracking-wide">

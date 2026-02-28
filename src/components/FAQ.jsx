@@ -67,10 +67,10 @@ function FAQItem({ q, a }) {
 
 export default function FAQ() {
   return (
-    <section className="max-w-3xl mx-auto px-6 mb-32">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-        <p className="text-gray-400 max-w-lg mx-auto leading-relaxed">
+    <section className="max-w-3xl mx-auto px-4 sm:px-6 mb-16 md:mb-32">
+      <div className="text-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+        <p className="text-gray-400 max-w-lg mx-auto leading-relaxed text-sm md:text-base px-2">
           Everything you need to know about DreamLens and AI dream interpretation.
         </p>
       </div>

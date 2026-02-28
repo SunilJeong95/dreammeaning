@@ -12,8 +12,8 @@ function scrollToInput() {
 
 export default function Pricing() {
   return (
-    <section className="max-w-md mx-auto px-6 mb-24">
-      <div className="text-center mb-10">
+    <section className="max-w-md mx-auto px-4 sm:px-6 mb-16 md:mb-24">
+      <div className="text-center mb-8 md:mb-10">
         <h2 className="text-3xl font-bold text-white mb-3">Completely Free</h2>
         <p className="text-gray-500 text-sm whitespace-nowrap">
           No account needed. No subscription. No payment required.

@@ -60,18 +60,18 @@ export default function AboutPage() {
   return (
     <div className="bg-background-dark text-white min-h-screen">
       <Header />
-      <main className="pt-32 pb-20">
+      <main className="pt-24 md:pt-32 pb-12 md:pb-20">
 
         {/* Hero */}
-        <section className="max-w-3xl mx-auto px-6 text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-8 uppercase">
+        <section className="max-w-3xl mx-auto px-4 sm:px-6 text-center mb-12 md:mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-6 md:mb-8 uppercase">
             <span className="material-symbols-outlined text-sm">visibility</span>
             About DreamLens
           </div>
-          <h1 className="text-5xl font-black tracking-tight mb-6 text-white leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 md:mb-6 text-white leading-tight">
             Your Dreams, Decoded by AI
           </h1>
-          <p className="text-lg text-gray-300 leading-relaxed">
+          <p className="text-base md:text-lg text-gray-300 leading-relaxed px-2">
             DreamLens is a free AI-powered dream interpretation service that blends modern psychology with
             ancient cultural wisdom. We believe every dream carries meaning — and that exploring that meaning
             can be a rich tool for self-reflection and creative discovery.
@@ -79,8 +79,8 @@ export default function AboutPage() {
         </section>
 
         {/* Mission */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <div className="bg-white/5 border border-white/10 rounded-3xl p-8">
+        <section className="max-w-3xl mx-auto px-4 sm:px-6 mb-10 md:mb-20">
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8">
             <h2 className="text-2xl font-bold text-white mb-4">Our Mission</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
               Dreams are one of the most universal human experiences, yet they remain one of the least
@@ -99,19 +99,19 @@ export default function AboutPage() {
         </section>
 
         {/* Interpretation Frameworks */}
-        <section className="max-w-7xl mx-auto px-6 mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Our Interpretation Frameworks</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 mb-10 md:mb-20">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Our Interpretation Frameworks</h2>
+            <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-base px-2">
               Each dream analysis draws on four distinct traditions of dream interpretation, giving you
               a multi-layered perspective on your subconscious.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
             {FRAMEWORKS.map((f) => (
               <div
                 key={f.title}
-                className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-white/20 transition-colors"
+                className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 hover:border-white/20 transition-colors"
               >
                 <div className={`w-12 h-12 rounded-2xl ${f.bg} flex items-center justify-center mb-5`}>
                   <span className={`material-symbols-outlined ${f.color} text-2xl`}>{f.icon}</span>
@@ -124,8 +124,8 @@ export default function AboutPage() {
         </section>
 
         {/* How It Works */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <div className="text-center mb-12">
+        <section className="max-w-3xl mx-auto px-4 sm:px-6 mb-10 md:mb-20">
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">How It Works</h2>
             <p className="text-gray-400">From dream to insight in four simple steps.</p>
           </div>
@@ -143,8 +143,8 @@ export default function AboutPage() {
         </section>
 
         {/* Why Dreams Matter */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <div className="bg-primary/5 border border-primary/20 rounded-3xl p-8">
+        <section className="max-w-3xl mx-auto px-4 sm:px-6 mb-10 md:mb-20">
+          <div className="bg-primary/5 border border-primary/20 rounded-3xl p-6 md:p-8">
             <h2 className="text-2xl font-bold text-white mb-4">Why Dream Interpretation Matters</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
               Research in cognitive science suggests that dreaming plays an important role in memory
@@ -167,8 +167,8 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Decode Your Dream?</h2>
+        <section className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Decode Your Dream?</h2>
           <p className="text-gray-400 mb-8">It's free, takes 30 seconds, and no account is required.</p>
           <Link
             to="/#dream-input"
