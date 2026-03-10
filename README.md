@@ -1,6 +1,6 @@
 # DreamLens — AI Dream Interpretation Service
 
-> **Last updated:** 2026-02-28 (add Privacy Policy, About, FAQ pages for AdSense compliance)
+> **Last updated:** 2026-03-10 (add Blog, Dream Dictionary pages to address AdSense "Low value content" rejection)
 
 ---
 

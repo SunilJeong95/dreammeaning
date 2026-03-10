@@ -16,6 +16,8 @@ export default function Header() {
         </Link>
         {/* Nav */}
         <nav className="flex items-center gap-3 sm:gap-6 text-sm text-gray-400">
+          <Link to="/blog" className="hidden sm:block hover:text-white transition-colors">Blog</Link>
+          <Link to="/dream-dictionary" className="hidden sm:block hover:text-white transition-colors">Dictionary</Link>
           <Link to="/about" className="hidden sm:block hover:text-white transition-colors">About</Link>
           <Link
             to="/#dream-input"

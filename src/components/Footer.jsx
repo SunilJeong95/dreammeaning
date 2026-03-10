@@ -15,6 +15,8 @@ export default function Footer() {
           <span className="text-gray-400 font-semibold">DreamLens</span>
         </div>
         <nav className="flex items-center gap-5 text-sm text-gray-500">
+          <Link to="/blog" className="hover:text-gray-300 transition-colors">Blog</Link>
+          <Link to="/dream-dictionary" className="hover:text-gray-300 transition-colors">Dictionary</Link>
           <Link to="/about" className="hover:text-gray-300 transition-colors">About</Link>
           <Link to="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
           <a
