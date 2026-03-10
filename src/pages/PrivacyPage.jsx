@@ -14,7 +14,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-bold text-white mb-3">1. Overview</h2>
             <p>
-              DreamLens ("we," "us," or "our") operates the website at dreamlens.app (the "Service"). This
+              DreamLens ("we," "us," or "our") operates the website at dreamlens.page (the "Service"). This
               Privacy Policy explains how we collect, use, and protect your information when you use our Service.
               By using DreamLens, you agree to the practices described in this policy.
             </p>
