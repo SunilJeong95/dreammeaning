@@ -42,6 +42,7 @@ export default function BlogWaterDreams() {
       date="March 1, 2026"
       readTime="7 min read"
       category="Dream Symbols"
+      description="Discover the psychology, neuroscience, and cultural meaning of water dreams. Explore Jungian, Freudian, Korean Taemong, and Chinese Zhou Gong interpretations of water symbolism."
     >
       <P>
         Water is one of the most universal symbols in human dreams. Across every culture and throughout

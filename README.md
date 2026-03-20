@@ -1,6 +1,6 @@
 # DreamLens — AI Dream Interpretation Service
 
-> **Last updated:** 2026-03-10 (add Blog, Dream Dictionary pages to address AdSense "Low value content" rejection)
+> **Last updated:** 2026-03-20 (add 3 new blog articles, per-page SEO meta/title, Article JSON-LD schema, complete sitemap — AdSense "Low value content" improvements)
 
 ---
 

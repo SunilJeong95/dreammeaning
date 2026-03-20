@@ -42,6 +42,7 @@ export default function BlogFlyingDreams() {
       date="March 3, 2026"
       readTime="6 min read"
       category="Dream Symbols"
+      description="Explore the neuroscience, Jungian psychology, and cultural meaning of flying dreams. Learn what it means to soar in your dreams across Western psychology and Eastern traditions."
     >
       <P>
         Flying dreams rank among the most exhilarating experiences in all of human dreaming. That

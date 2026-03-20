@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -57,6 +58,14 @@ const STEPS = [
 ];
 
 export default function AboutPage() {
+  useEffect(() => {
+    const prev = document.title;
+    document.title = 'About DreamLens | AI Dream Interpretation';
+    const m = document.querySelector('meta[name="description"]');
+    const pd = m?.getAttribute('content');
+    if (m) m.setAttribute('content', 'Learn how DreamLens uses Jungian, Freudian, Korean Taemong, and Chinese Zhou Gong frameworks to interpret your dreams with AI.');
+    return () => { document.title = prev; if (m) m.setAttribute('content', pd || ''); };
+  }, []);
   return (
     <div className="bg-background-dark text-white min-h-screen">
       <Header />

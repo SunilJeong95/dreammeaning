@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,6 +9,9 @@ const SLUG_TO_PATH = {
   'psychology-of-flying-dreams': '/blog/flying-dreams',
   'why-do-we-dream-about-teeth-falling-out': '/blog/teeth-dreams',
   'understanding-recurring-dreams': '/blog/recurring-dreams',
+  'color-in-dreams': '/blog/color-in-dreams',
+  'stop-nightmares': '/blog/stop-nightmares',
+  'ancient-dream-traditions': '/blog/ancient-dream-traditions',
 };
 
 function ArticleCard({ article }) {
@@ -52,6 +56,14 @@ function ArticleCard({ article }) {
 }
 
 export default function BlogPage() {
+  useEffect(() => {
+    const prev = document.title;
+    document.title = 'Dream Interpretation Blog | DreamLens';
+    const m = document.querySelector('meta[name="description"]');
+    const pd = m?.getAttribute('content');
+    if (m) m.setAttribute('content', 'Explore dream science, psychology, and cultural traditions. Articles on dream symbols, recurring nightmares, ancient dream wisdom, and more.');
+    return () => { document.title = prev; if (m) m.setAttribute('content', pd || ''); };
+  }, []);
   return (
     <div className="bg-background-dark text-white min-h-screen">
       <Header />

@@ -1,8 +1,44 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 
-export default function ArticleLayout({ title, date, readTime, category, children }) {
+export default function ArticleLayout({ title, date, readTime, category, description, children }) {
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = `${title} | DreamLens`;
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    const prevDesc = metaDesc?.getAttribute('content');
+    if (metaDesc && description) metaDesc.setAttribute('content', description);
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'article-ld-json';
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      datePublished: date,
+      description: description || title,
+      url: window.location.href,
+      author: { '@type': 'Organization', name: 'DreamLens' },
+      publisher: {
+        '@type': 'Organization',
+        name: 'DreamLens',
+        url: 'https://dreamlens.page',
+      },
+    });
+    document.head.appendChild(script);
+
+    return () => {
+      document.title = prevTitle;
+      if (metaDesc) metaDesc.setAttribute('content', prevDesc || '');
+      const s = document.getElementById('article-ld-json');
+      if (s) s.remove();
+    };
+  }, [title, date, description]);
+
   return (
     <div className="bg-background-dark text-white min-h-screen">
       <Header />

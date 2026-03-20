@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -358,6 +358,14 @@ function SymbolCard({ symbol }) {
 }
 
 export default function DreamDictionaryPage() {
+  useEffect(() => {
+    const prev = document.title;
+    document.title = 'Dream Dictionary: 30+ Symbols Explained | DreamLens';
+    const m = document.querySelector('meta[name="description"]');
+    const pd = m?.getAttribute('content');
+    if (m) m.setAttribute('content', 'Look up what any dream symbol means across Jungian, Freudian, Korean Taemong, and Chinese Zhou Gong interpretations. 30+ symbols across 5 categories.');
+    return () => { document.title = prev; if (m) m.setAttribute('content', pd || ''); };
+  }, []);
   const [activeCategory, setActiveCategory] = useState('All');
   const displayed = activeCategory === 'All'
     ? SYMBOLS
